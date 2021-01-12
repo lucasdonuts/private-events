@@ -7,9 +7,34 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <nav class="navbar">
+      <div class="navbar-brand">
+        <div class="navbar-item">
+          <h2 class="title is-2">Private Events</h2><br />
+            <h3 class="subtitle is-6">
+              <% if current_user %>
+                <%= link_to current_user.username, user_path(current_user) %>
+                <%= link_to "Log Out", logout_path %>
+              <% else %>
+                <%= link_to "Log In", new_session_path %>
+              <% end %>
+            </h3>
+        </div>
+      </div>
+    </nav>
   </head>
 
   <body>
+    <% if flash[:notice] %>
+      <div class="notification is-primary global-notification">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="notification is-danger global-notification">
+        <p class="alert"><%= alert %></p>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
