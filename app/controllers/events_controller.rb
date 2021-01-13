@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:attend, :show, :edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
@@ -58,6 +58,15 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def attend
+    if @event.attendees.include?(current_user)
+      redirect_to @event, alert: 'You are already enrolled for this event!'
+    else
+      @event.attendees << current_user
+      redirect_to @event, notice: 'You are now enrolled in this event'
     end
   end
 

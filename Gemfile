@@ -26,6 +26,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 
 gem 'bulma-rails', '~> 0.9.1'
+gem 'bulmajs-rails'
 gem 'guard', '~> 2.16', '>= 2.16.2'
 gem 'guard-livereload', '~> 2.5', '>= 2.5.2', require: false
 gem 'gravatar_image_tag', '~> 1.2'

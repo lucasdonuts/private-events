@@ -2,32 +2,31 @@
 <html>
   <head>
     <title>PrivateEvents</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     
     
     <!-- Look at bulma's nested column page   -->
     
-    <nav class="navbar">
-      <div class="navbar-brand">
-        <div class="columns is-centered">
-          <div class="column is-full">
-            <%= link_to root_path do %>
-            <h2 class="title is-2 has-text-centered is-size-5-mobile">Private Events</h2>
-            <% end %>
-            <nav class="level is-mobile">
-                <% if current_user %>
-                  <%= link_to current_user.username, user_path(current_user), class: "button is-white level-item" %>
-                  <%= link_to "New Event", new_event_path, class: "button is-white level-item" %>
-                  <%= link_to "Log Out", logout_path, class: "button is-white level-item" %>
-                <% else %>
-                  <%= link_to "Sign In", new_session_path, class: "button is-white level-item has-text-centered" %>
-                <% end %>
-            </nav>
-          </div>
+    <nav class="level">
+      <div class="level-item has-text-centered">
+        <div>
+          <%= link_to root_path do %>
+          <h2 class="title is-2 is-size-5-mobile">Private Events</h2>
+          <% end %>
+          <% if current_user %>
+            <%= link_to current_user.username, user_path(current_user), class: "button is-white" %>
+            <%= link_to "New Event", new_event_path, class: "button is-white" %>
+            <%= link_to "Log Out", logout_path, class: "button is-white" %>
+          <% else %>
+            <%= link_to "Sign In", new_session_path, class: "button is-white" %>
+            <%= link_to "Register", new_user_path, class: "button is-white" %>
+          <% end %>
         </div>
       </div>
     </nav>
