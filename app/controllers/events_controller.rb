@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:attend, :show, :edit, :update, :destroy]
+  before_action :set_event, except: [:index, :new, :create]
 
   # GET /events
   # GET /events.json
@@ -80,4 +80,7 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:date, :name, :description)
     end
+
+    
+    
 end

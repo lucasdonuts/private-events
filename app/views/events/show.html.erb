@@ -15,6 +15,10 @@
             </p>
           </div>
           <br>
+          <div class="level-item">
+            <small>Created by: <%= link_to @event.creator.username, user_path(@event.creator) %></small>
+          </div>
+          <br>
           <div class="level-item has-text-centered">
             <% if current_user %>
               <%= link_to "Enroll", attend_event_path, class: "button is-primary" %>

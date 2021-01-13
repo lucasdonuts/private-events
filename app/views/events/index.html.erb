@@ -2,12 +2,19 @@
   <div class="container">
     <div class="columns is-centered">
       <div class="column">
-        <h3 class="content is-large">All Events</h3>
-        <% @events.each do |event| %>
-          <div class="box">
-            <%= event.date %>
-            <h2 class="title is-3"><%= link_to event.name, event %></h2>
-          </div>
+        <h3 class="content is-large">Upcoming Events</h3>
+        <% @events.upcoming.each do |event| %>
+            <div class="box">
+              <%= event.date.strftime("%B, %-d, %Y") %>
+              <h2 class="title is-4"><%= link_to event.name, event %></h2>
+            </div>
+        <% end %>
+        <h3 class="content is-large">Past Events</h3>
+        <% @events.past.each do |event| %>
+            <div class="box">
+              <%= event.date %>
+              <h2 class="title is-4"><%= link_to event.name, event %></h2>
+            </div>
         <% end %>
       </div>
     </div>
