@@ -7,18 +7,27 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    
+    <!-- Look at bulma's nested column page   -->
+    
     <nav class="navbar">
       <div class="navbar-brand">
-        <div class="navbar-item">
-          <h2 class="title is-2">Private Events</h2><br />
-            <h3 class="subtitle is-6">
-              <% if current_user %>
-                <%= link_to current_user.username, user_path(current_user) %>
-                <%= link_to "Log Out", logout_path %>
-              <% else %>
-                <%= link_to "Log In", new_session_path %>
-              <% end %>
-            </h3>
+        <div class="columns is-centered">
+          <div class="column is-full">
+            <%= link_to root_path do %>
+            <h2 class="title is-2 has-text-centered is-size-5-mobile">Private Events</h2>
+            <% end %>
+            <nav class="level is-mobile">
+                <% if current_user %>
+                  <%= link_to current_user.username, user_path(current_user), class: "button is-white level-item" %>
+                  <%= link_to "New Event", new_event_path, class: "button is-white level-item" %>
+                  <%= link_to "Log Out", logout_path, class: "button is-white level-item" %>
+                <% else %>
+                  <%= link_to "Sign In", new_session_path, class: "button is-white level-item has-text-centered" %>
+                <% end %>
+            </nav>
+          </div>
         </div>
       </div>
     </nav>

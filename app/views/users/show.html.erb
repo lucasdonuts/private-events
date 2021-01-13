@@ -1,7 +1,15 @@
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
-
-
-<%= link_to 'Back', users_path %>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <h3 class="content is-large"><%= @user.username %>'s events</h3>
+        <% @user.created_events.each do |event| %>
+          <div class="box">
+                <%= event.date %>
+                <h2 class="title is-3"><%= link_to event.name, event %></h2>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
