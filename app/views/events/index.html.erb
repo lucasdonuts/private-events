@@ -1,21 +1,30 @@
 <section class="section">
   <div class="container">
-    <div class="columns is-centered">
+    <div class="columns has-text-centered">
       <div class="column">
-        <h3 class="content is-large">Upcoming Events</h3>
-        <% @events.upcoming.each do |event| %>
-            <div class="box">
-              <%= event.date.strftime("%B, %-d, %Y") %>
-              <h2 class="title is-4"><%= link_to event.name, event %></h2>
+        <h3 class="content is-large has-text-centered">Upcoming Events</h3>
+        <div class="columns is-multiline is-centered">
+          <% @events.upcoming.each do |event| %>
+            <div class="column is-narrow">
+              <div class="box has-text-centered">
+                <%= event.date.strftime("%B %-d, %Y") %>
+                <h2 class="title is-5"><%= link_to event.name, event %></h2>
+                <small><%= link_to event.creator.username, user_path(event.creator) %></small>
+              </div>
             </div>
-        <% end %>
-        <h3 class="content is-large">Past Events</h3>
-        <% @events.past.each do |event| %>
-            <div class="box">
-              <%= event.date %>
-              <h2 class="title is-4"><%= link_to event.name, event %></h2>
+          <% end %>
+        </div>
+        <h3 class="content is-large has-text-centered">Past Events</h3>
+        <div class="columns is-multiline is-centered">
+          <% @events.past.each do |event| %>
+            <div class="column is-narrow">
+              <div class="box has-text-centered">
+                <%= event.date %>
+                <h2 class="title is-5"><%= link_to event.name, event %></h2>
+                <small><%= link_to event.creator.username, user_path(event.creator) %></small>
+              </div>
             </div>
-        <% end %>
+          <% end %>
       </div>
     </div>
   </div>

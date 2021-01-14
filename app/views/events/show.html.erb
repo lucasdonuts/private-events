@@ -21,7 +21,18 @@
           <br>
           <div class="level-item has-text-centered">
             <% if current_user %>
-              <%= link_to "Enroll", attend_event_path, class: "button is-primary" %>
+              <% if @event.creator == current_user %>
+                <%= link_to "Send Invites",
+                            users_path( event_id: @event.id ),
+                            class: "button is-primary" %>
+              <% else %>
+                <% invitation = Invitation.find_by(event_id: @event.id, attendee_id: current_user.id) %>
+                <% if invitation && invitation.accepted? %>
+                  <button class="button is-primary" disabled>Invitation Accepted!</button>
+                <% else %>
+                  <%= link_to "Accept Invitation", invitation_path(event_id: @event.id), method: :patch, class: "button is-primary" %>
+                <% end %>
+              <% end %>
             <% else %>
               <%= link_to "Log In To Enroll", new_session_path, class: "button is-primary" %>
             <% end %>

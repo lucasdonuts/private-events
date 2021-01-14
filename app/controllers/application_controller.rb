@@ -1,12 +1,11 @@
 class ApplicationController < ActionController::Base
-  #before_action :require_login
+  before_action :require_login, except: [:index, :show]
 
   private
 
   def require_login
     unless current_user
-      flash.now.alert = "Please log in to continue"
-      #redirect_to new_session_path
+      redirect_to new_session_path, alert: 'Please log in to continue'
     end
   end
 

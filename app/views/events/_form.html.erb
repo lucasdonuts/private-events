@@ -11,22 +11,33 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.date_select :date %>
+  
+  <div class="field has-text-centered">
+    <div class="control">
+      <%= form.label :date, class: "label" %>
+      <%= form.date_select :date,
+                           order: [:month, :day, :year] %>
+    </div>
   </div>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <div class="control">
+      <%= form.label :name, class: "label" %>
+      <%= form.text_field :name, class: "input" %>
+    </div>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+      <%= form.label :description, class: "label" %>
+      <%= form.text_area :description, class: "textarea" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="field is-grouped is-grouped-centered">
+    <div class="control">
+      <%= form.submit class: "button is-info" %>
+    </div>
+    <div class="control">
+      <%= link_to "Back to Events", root_path, class: "button is-dark" %>
+    </div>
   </div>
 <% end %>
